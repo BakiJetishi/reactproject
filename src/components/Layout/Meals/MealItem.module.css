@@ -1,0 +1,48 @@
+.box {
+  border: 1px solid #eee;
+  padding: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: relative;
+}
+
+.img {
+  overflow: hidden;
+  border-radius: 20px;
+}
+.box img {
+  width: 100%;
+  background-color: #ffc222;
+  transition: 500ms;
+}
+.box:hover img {
+  transform: scale(1.2);
+}
+.text {
+  margin-top: 10px;
+}
+.title {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.title2 {
+  margin-left: 5px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-weight: 400;
+  color: inherit;
+}
+.info {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.price {
+  font-weight: 700;
+  color: #ffc222;
+}

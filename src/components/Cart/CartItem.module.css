@@ -1,0 +1,63 @@
+.item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.img {
+  width: 30%;
+}
+
+.img img {
+  width: 70px;
+  width: 70px;
+  background-color: #ffc222;
+  border-radius: 10px;
+}
+
+.info {
+  width: 70%;
+  margin-top: 5px;
+}
+
+.title {
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+
+.price span,
+.total span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  height: 30px;
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+  gap: 10px;
+}
+
+.item button {
+  font-size: 1.25rem;
+  border: 1px solid #ffc222;
+  width: 3rem;
+  text-align: center;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.item button:hover,
+.item button:active {
+  background-color: #ffc222;
+  color: white;
+}
+
+.delete {
+  font-size: 12px !important;
+}

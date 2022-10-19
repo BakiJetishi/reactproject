@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.form input {
+  width: 60px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ffc222;
+  background-color: transparent;
+  border-radius: 5px;
+  color: inherit;
+}
+
+.cart {
+  width: 40px;
+  cursor: pointer;
+  font-size: 15px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc222;
+  color: inherit;
+  border: none;
+}
+.cart:hover {
+  transform: scale(1.1);
+}

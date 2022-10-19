@@ -1,0 +1,50 @@
+.box {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.box img {
+  width: 100%;
+  background-color: #ffc222;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.box-title {
+  padding: 5px 5px 15px 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.box-s-title {
+  padding: 0 5px 15px 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  color: inherit;
+  height: 100px;
+  overflow: hidden;
+}
+
+.box a {
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #ffc222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc222;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  justify-content: flex-end;
+  display: block;
+}
