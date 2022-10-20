@@ -8,7 +8,7 @@ const Meals = () => {
     const [meals, setMeals] = useState([]);
     const [httpError, setHttpError] = useState();
     const [category, setCategory] = useState('All')
-    const categories = ['All', 'Burgers', 'Pizza', 'Drinks', 'Desserts', 'Fish', 'Fruits']
+    const categories = ['All', 'Burgers', 'Pizza', 'Chicken', 'Drinks', 'Desserts', 'Fish', 'Fruits']
 
     useEffect(() => {
         const fetchMeals = async () => {
