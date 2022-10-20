@@ -46,6 +46,20 @@
   z-index: 30;
 }
 
+.burger-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  width: 400px;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-left 300ms ease-out forwards;
+}
+
 @media (max-width: 1000px) {
   .reservation-modal {
     width: 100%;

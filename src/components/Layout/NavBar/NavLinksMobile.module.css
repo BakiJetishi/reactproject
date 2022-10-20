@@ -1,0 +1,47 @@
+.links {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: white;
+  padding-top: 70px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.links ul li {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  padding: 10px 0;
+}
+
+.links ul li a {
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+  color: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 300ms;
+}
+
+.links ul li a:hover {
+  color: #ffc222;
+}
+
+.links ul li:last-child {
+  width: 50%;
+}
+
+@media (max-width: 991px) {
+  .links {
+    display: block;
+  }
+}

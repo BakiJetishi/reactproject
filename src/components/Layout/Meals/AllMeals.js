@@ -7,6 +7,8 @@ import classes from './Meals.module.css'
 const Meals = () => {
     const [meals, setMeals] = useState([]);
     const [httpError, setHttpError] = useState();
+    const [category, setCategory] = useState('All')
+    const categories = ['All', 'Burgers', 'Pizza', 'Drinks', 'Desserts', 'Fish', 'Fruits']
 
     useEffect(() => {
         const fetchMeals = async () => {
@@ -27,6 +29,7 @@ const Meals = () => {
                     desc: responseData[key].desc,
                     img: responseData[key].img,
                     price: responseData[key].price,
+                    type: responseData[key].type,
                 });
             }
             const lastMeals = loadedMeals.reverse()
@@ -45,8 +48,18 @@ const Meals = () => {
             </section>
         );
     }
+    const changeHandle = (props) => {
+        setCategory(props)
+    }
 
-    const mealsList = meals.map((meal) => (
+    let filteredMeals = meals.filter(item => item.type === category)
+
+    if (category === 'All') {
+        filteredMeals = meals.map(item => item)
+
+    }
+
+    let mealsList = filteredMeals.map((meal) => (
         <MealItem
             key={meal.id}
             id={meal.id}
@@ -57,10 +70,17 @@ const Meals = () => {
         />
     ));
 
+    if (mealsList.length === 0) {
+        mealsList = <p>No Food Items Available</p>
+    }
+
     return (
         <div className={classes['popular-dishes']} style={{ paddingTop: 80 }}>
             <div className={classes.inner}>
                 <h2 className={classes.title}><span className={classes['box-title-inner']}>Products</span></h2>
+                <div className={classes.food}>
+                    {categories.map((category) => <button key={category} onClick={() => changeHandle(category)}>{category}</button>)}
+                </div>
                 <div className={classes.boxs}>{mealsList}</div>
             </div>
         </div>

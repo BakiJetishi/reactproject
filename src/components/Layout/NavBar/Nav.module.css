@@ -7,12 +7,15 @@
   width: 100%;
   height: 100px;
   background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 10;
   backdrop-filter: blur(10px);
+}
+
+.toggle {
+  position: absolute;
+  right: 0;
+  top: 35%;
 }
 
 .nav {
@@ -52,14 +55,45 @@
   gap: 20px;
 }
 
-@media (max-width: 991px) {
+.burger {
+  cursor: pointer;
+  position: absolute;
+  display: none;
+  right: 100px;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 5px;
+  transition: all 0.4s ease;
+}
+
+@media (max-width: 1140px) {
+  .links {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
+  .nav {
+    width: 75%;
+    margin: 0 20px;
+  }
 }
 
 @media (max-width: 767px) {
+  .logo {
+    font-size: 30px;
+  }
+  .nav {
+    width: 62%;
+  }
+  .buttons {
+    gap: 10px;
+  }
 }
 
 @media (max-width: 575px) {
-  .header {
-    display: none;
-  }
 }

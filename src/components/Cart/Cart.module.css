@@ -65,8 +65,8 @@
 .close-cart {
   font-size: 30px;
   position: absolute;
-  right: 1100%;
-  top: 5px;
+  left: 15px;
+  top: 15px;
   cursor: pointer;
   background-color: transparent;
   border: none;

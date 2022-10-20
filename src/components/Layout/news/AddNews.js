@@ -72,16 +72,16 @@ const AddNews = () => {
             </div>
             <form className={classes.content} onSubmit={addProductHandler}>
                 <div>
+                    <label htmlFor='img'>Image</label>
+                    <input type='file' id='img' onChange={uploadImage} />
+                </div>
+                <div>
                     <label htmlFor='name'>Title</label>
                     <input type='text' placeholder='Enter title' id='name' ref={nameInputRef} />
                 </div>
                 <div>
                     <label htmlFor='desc'>Description</label>
                     <input type='text' placeholder='Enter description' id='desc' ref={descInputRef} />
-                </div>
-                <div>
-                    <label htmlFor='img'>Image</label>
-                    <input type='file' id='img' onChange={uploadImage} />
                 </div>
                 <button type='submit'>Add!</button>
             </form>

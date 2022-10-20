@@ -2,7 +2,7 @@ import { useState, useContext, lazy, Suspense } from 'react';
 import useToggle from './custom-hooks/use-toggle'
 import { Route, Routes } from 'react-router-dom'
 
-import Nav from './components/Layout/Nav'
+import Nav from './components/Layout/NavBar/Nav'
 import Home from './pages/Home'
 import Footer from './components/Layout/Footer'
 import Cart from './components/Cart/Cart';

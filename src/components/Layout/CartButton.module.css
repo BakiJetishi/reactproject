@@ -65,3 +65,25 @@
     transform: scale(1);
   }
 }
+
+@media (max-width: 991px) {
+  .button {
+    width: 45px;
+    height: 45px;
+  }
+  .badge {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .button {
+    width: 40px;
+    height: 40px;
+  }
+  .badge {
+    width: 25px;
+    height: 25px;
+  }
+}

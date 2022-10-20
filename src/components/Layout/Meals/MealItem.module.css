@@ -4,6 +4,10 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .img {
@@ -11,9 +15,10 @@
   border-radius: 20px;
 }
 .box img {
-  width: 100%;
   background-color: #ffc222;
   transition: 500ms;
+  width: 100%;
+  height: 100%;
 }
 .box:hover img {
   transform: scale(1.2);

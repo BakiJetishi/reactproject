@@ -47,6 +47,21 @@
   color: red;
 }
 
+.food {
+  display: flex;
+  gap: 10px;
+  margin: 40px 0 20px 0;
+}
+
+.food button {
+  background-color: #ffc222;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: inherit;
+  cursor: pointer;
+}
+
 @media (max-width: 991px) {
   .boxs {
     grid-template-columns: repeat(3, 1fr);

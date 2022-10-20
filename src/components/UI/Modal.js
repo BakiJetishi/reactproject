@@ -31,6 +31,12 @@ const CheckoutModalOverlay = (props) => {
   )
 }
 
+const BurgerMenuModalOverlay = (props) => {
+  return (
+    <div className={classes['burger-modal']}>{props.children}</div>
+  )
+}
+
 
 const portalElement = document.getElementById('overlays');
 
@@ -76,6 +82,18 @@ export const CheckoutModal = (props) => {
       {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
       {ReactDOM.createPortal(
         <CheckoutModalOverlay>{props.children}</CheckoutModalOverlay>,
+        portalElement
+      )}
+    </Fragment>
+  );
+};
+
+export const BurgerMenuModal = (props) => {
+  return (
+    <Fragment>
+      {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
+      {ReactDOM.createPortal(
+        <BurgerMenuModalOverlay>{props.children}</BurgerMenuModalOverlay>,
         portalElement
       )}
     </Fragment>

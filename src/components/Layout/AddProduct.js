@@ -19,6 +19,7 @@ const AddProduct = () => {
     const nameInputRef = useRef();
     const descInputRef = useRef();
     const priceInputRef = useRef();
+    const typeInputRef = useRef();
 
     const uploadImage = (e) => {
         setImageUpload(e.target.files[0]);
@@ -49,6 +50,7 @@ const AddProduct = () => {
                 img: imageUrl,
                 desc: descInputRef.current.value,
                 price: priceInputRef.current.value,
+                type: typeInputRef.current.value,
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -75,6 +77,10 @@ const AddProduct = () => {
             </div>
             <form className={classes.content} onSubmit={addProductHandler}>
                 <div>
+                    <label htmlFor='img'>Image</label>
+                    <input type='file' placeholder='Product Image' id='img' onChange={uploadImage} />
+                </div>
+                <div>
                     <label htmlFor='name'>Name</label>
                     <input type='text' placeholder='Enter product name' id='name' ref={nameInputRef} />
                 </div>
@@ -82,14 +88,25 @@ const AddProduct = () => {
                     <label htmlFor='desc'>Description</label>
                     <input type='text' placeholder='Enter product description' id='desc' ref={descInputRef} />
                 </div>
+
                 <div>
-                    <label htmlFor='img'>Image</label>
-                    <input type='file' placeholder='Product Image' id='img' onChange={uploadImage} />
-                </div>
-                <div>
-                    <label htmlFor='price'>price</label>
+                    <label htmlFor='price'>Price</label>
                     <input type='text' placeholder='Enter price' id='price' ref={priceInputRef} />
                 </div>
+                <div>
+                    <label >Product Type</label>
+                    <select ref={typeInputRef}>
+                        <option value='All'>All</option>
+                        <option value='Pizza'>Pizza</option>
+                        <option value='Chicken'>Chicken</option>
+                        <option value='Drinks'>Drinks</option>
+                        <option value='Burgers'>Burgers</option>
+                        <option value='Desserts'>Desserts</option>
+                        <option value='Fish'>Fish</option>
+                        <option value='Fruits'>Fruits</option>
+                    </select>
+                </div>
+
                 <button type='submit'>Add!</button>
             </form>
             {imageDeployed && <AuthModal><p className={classes.deployed}>Product successfully added</p></AuthModal>}
