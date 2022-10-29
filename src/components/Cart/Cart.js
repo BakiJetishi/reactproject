@@ -23,6 +23,10 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (data) => {
 
+
+    /* Sending a post request to the url with the data and then setting the state of orderSubmitted to true
+    and clearing the cart. Then it sets the checkoutShow to false and after 2 seconds it sets the
+    orderSubmitted to false and closes the modal. */
     const url = 'https://react-http-403d2-default-rtdb.firebaseio.com/orders.json'
 
     await axios.post(url, {
@@ -52,29 +56,49 @@ const Cart = (props) => {
   //   })
   // };
 
+  /**
+   * It takes an id as an argument and calls the removeItem function from the cart context.
+   * @param id - the id of the item to be removed
+   */
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
   };
 
+  /**
+   * It takes an item as an argument, and then it adds that item to the cart, with an amount of 1.
+   * @param item - the item that is being added to the cart
+   */
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({ ...item, amount: 1 });
   };
 
+  /**
+   * It takes an id as an argument and then calls the deleteItem function from the cart context.
+   * @param id - the id of the item to be deleted
+   */
   const cartItemDeleteHandler = (id) => {
     cartCtx.deleteItem(id)
-    console.log(id)
   };
 
+  /**
+   * It clears the cart.
+   */
   const clearCartHandler = () => {
     cartCtx.clearCart()
   }
 
+  /**
+   * When the checkout button is clicked, toggle the checkoutShow state to the opposite of what it
+   * currently is.
+   */
   const checkoutHandler = () => {
     setCheckoutShow((prevState) => !prevState)
   }
 
   let cartItems
 
+  /* Checking if the cart has any items in it. If it does, it will map through the items and return a
+  CartItem component for each item. */
   if (cartCtx.items.length > 0) {
     cartItems = (
       <div>
@@ -96,6 +120,7 @@ const Cart = (props) => {
   }
 
   const cartIsNotEmpty = cartCtx.items.length > 0
+
   return (
     <>
       <CartModal onClose={props.onClose}>
@@ -114,7 +139,7 @@ const Cart = (props) => {
             <button type='submit' disabled={!cartIsNotEmpty} className={classes.checkout} onClick={checkoutHandler}>Checkout</button>
           </div>
         </div>
-        {checkoutShow && <Checkout onCancel={checkoutHandler} onConfirm={submitOrderHandler} />}
+        {checkoutShow && <Checkout onClose={checkoutHandler} onConfirm={submitOrderHandler} />}
       </CartModal >
       {orderSubmitted && <CheckoutModal><p className={classes.deployed}>Order successfully submitted</p></CheckoutModal>}
     </>

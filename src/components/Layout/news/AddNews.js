@@ -23,8 +23,8 @@ const AddNews = () => {
         setImageUpload(e.target.files[0]);
     }
 
-    console.log(imageUpload)
-    console.log(imageUrl)
+    // console.log(imageUpload)
+    // console.log(imageUrl)
 
     useEffect(() => {
         if (imageUpload == null) return;

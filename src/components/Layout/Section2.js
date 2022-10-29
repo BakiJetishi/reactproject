@@ -8,6 +8,10 @@ import classes from './Section2.module.css'
 const Section2 = () => {
     const cartCtx = useContext(CartContext);
 
+    /**
+     * It takes an amount as an argument, and then calls the addItem function from the cart context,
+     * passing in an object with the item's details.
+     */
     const addToCartHandler = amount => {
         cartCtx.addItem({
             id: 101,
@@ -17,6 +21,7 @@ const Section2 = () => {
             price: 11.79
         });
     };
+
     return (
         <div className={classes.section} >
             <div className={classes.inner} >

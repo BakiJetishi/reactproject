@@ -8,6 +8,11 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import classes from './AuthForm.module.css'
 
+/**
+ * It checks if the password is valid.
+ * @param email - must contain @ and .
+ * @returns a boolean value.
+ */
 function validEmail(email) {
     return /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
@@ -24,6 +29,7 @@ const AuthForm = (props) => {
     const newPasswordInputRef = useRef();
     const authCtx = useContext(AuthContext);
 
+    /* A state that is used to check if the form is valid. */
     const [formInputsValidity, setFormInputsValidity] = useState({
         email: false,
         password: false,
@@ -31,6 +37,12 @@ const AuthForm = (props) => {
 
     const closeIcon = <FontAwesomeIcon icon={faXmark} />
 
+    /* A custom hook that returns an object with the following properties:
+    value: the value of the input.
+    isValid: a boolean value that indicates if the input is valid.
+    hasError: a boolean value that indicates if the input has an error.
+    valueChangeHandler: a function that is used to change the value of the input.
+    inputBlurHandler: a function that is used to check if the input is valid. */
     const {
         value: emailValue,
         isValid: emailIsValid,
@@ -49,6 +61,7 @@ const AuthForm = (props) => {
 
     let formIsValid = false;
 
+    /* Checking if the password and email are valid. */
     if (passwordIsValid && emailIsValid) {
         formIsValid = true;
     }
@@ -58,6 +71,8 @@ const AuthForm = (props) => {
 
         formIsValid = passwordIsValid && emailIsValid
 
+        /* Checking if the form is valid. If it is not valid, it sets the formInputsValidity state to the
+        opposite of the emailIsValid and passwordIsValid. */
         if (!formIsValid) {
             setFormInputsValidity({
                 email: !emailIsValid,
@@ -70,6 +85,8 @@ const AuthForm = (props) => {
         const enteredPassword = passwordInputRef.current.value;
 
         setIsLoading(true)
+
+        /* Sending a request to the firebase server. */
         let url;
         if (isLogin) {
             url =
@@ -89,6 +106,7 @@ const AuthForm = (props) => {
                 'Content-Type': 'application/json',
             },
         })
+            /* Making a request to the server and returning a response. */
             .then((res) => {
                 setIsLoading(false)
                 if (res.ok) {
@@ -105,6 +123,7 @@ const AuthForm = (props) => {
                     });
                 }
             })
+            /* Checking if the user is logged in. */
             .then((data) => {
                 const expirationTime = new Date(
                     new Date().getTime() + +data.expiresIn * 1000
@@ -119,6 +138,7 @@ const AuthForm = (props) => {
             });
     };
 
+    /* Checking if the email or password has an error. If it does, it adds the invalid class to the input. */
     const emailClasses = emailHasError || formInputsValidity.email ? `${classes['form-control']} ${classes.invalid}` : classes['form-control'];
     const passwordClasses = passwordHasError || formInputsValidity.password ? `${classes['form-control']} ${classes.invalid}` : classes['form-control'];
 
@@ -127,6 +147,7 @@ const AuthForm = (props) => {
 
         const enteredNewPassword = newPasswordInputRef.current.value;
 
+        /* Updating the password of the user. */
         fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDtLTeFeTL1MkiqF17G_dRh9LifobFhajc', {
             method: 'POST',
             body: JSON.stringify({
@@ -142,6 +163,10 @@ const AuthForm = (props) => {
         });
     };
 
+    /**
+     * When the user clicks the logout button, the logout function from the authContext is called, and the
+     * isLogin state is set to true.
+     */
     const logoutHandler = () => {
         authCtx.logout()
         setIsLogin(true)

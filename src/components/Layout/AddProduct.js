@@ -21,13 +21,15 @@ const AddProduct = () => {
     const priceInputRef = useRef();
     const typeInputRef = useRef();
 
+    /* It takes an event as an argument, and sets the state of the imageUpload property to the first file */
     const uploadImage = (e) => {
         setImageUpload(e.target.files[0]);
     }
 
-    console.log(imageUpload)
-    console.log(imageUrl)
+    // console.log(imageUpload)
+    // console.log(imageUrl)
 
+    /* Uploading the image to firebase storage. */
     useEffect(() => {
         if (imageUpload == null) return;
         const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
@@ -40,6 +42,10 @@ const AddProduct = () => {
 
 
 
+    /**
+     * It takes the values from the inputs and sends them to the database
+     * @param e - event
+     */
     async function addProductHandler(e) {
         e.preventDefault()
 
@@ -55,18 +61,19 @@ const AddProduct = () => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then((res) => {
-            nameInputRef.current.value = ''
-            descInputRef.current.value = ''
-            priceInputRef.current.value = ''
-            setImageDeployed(true)
-            setImageUpload(null)
-            setTimeout(() => {
-                setImageDeployed(false)
-                navigate('/')
-            }, 2000)
         })
-
+            /* Clearing the input fields and redirecting to the home page after 2 seconds. */
+            .then((res) => {
+                nameInputRef.current.value = ''
+                descInputRef.current.value = ''
+                priceInputRef.current.value = ''
+                setImageDeployed(true)
+                setImageUpload(null)
+                setTimeout(() => {
+                    setImageDeployed(false)
+                    navigate('/')
+                }, 2000)
+            })
     }
 
     return (

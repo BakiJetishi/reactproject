@@ -79,8 +79,8 @@ const Checkout = (props) => {
 
         const formIsValid = nameIsValid && numberIsValid && streetIsValid && postalCodeIsValid && cityIsValid && countryIsValid
 
+        /* Checking if the form is valid. If it is not valid, it will set the formInputsValidity to false and return */
         if (!formIsValid) {
-
             setFormInputsValidity({
                 name: !nameIsValid,
                 number: !numberIsValid,
@@ -89,17 +89,17 @@ const Checkout = (props) => {
                 postalCode: !postalCodeIsValid,
                 country: !countryIsValid,
             });
-
             return;
         }
 
+        /* Passing the values of the inputs to the parent component. */
         props.onConfirm({
             name: nameInputRef.current.value,
             number: numberInputRef.current.value,
             street: streetInputRef.current.value,
-            city: postalCodeInputRef.current.value,
-            country: cityInputRef.current.value,
-            postalCode: countryInputRef.current.value,
+            city: cityInputRef.current.value,
+            country: countryInputRef.current.value,
+            postalCode: postalCodeInputRef.current.value,
         });
     };
 
@@ -111,7 +111,7 @@ const Checkout = (props) => {
     const countryControlClasses = `${classes.control} ${formInputsValidity.country || countryHasError ? classes.invalid : ''}`;
 
     return (
-        <CheckoutModal onClose={props.onCancel}>
+        <CheckoutModal onClose={props.onClose}>
             <form className={classes.form} onSubmit={confirmHandler}>
                 <div className={nameControlClasses}>
                     <label htmlFor='name'>Your Name</label>
@@ -147,7 +147,7 @@ const Checkout = (props) => {
                     <button type='button' onClick={props.onCancel}>Cancel</button>
                     <button className={classes.submit}>Confirm</button>
                 </div>
-                <button className={classes.closeBtn} onClick={props.onCancel}>{closeIcon}</button>
+                <button className={classes.closeBtn} onClick={props.onClose}>{closeIcon}</button>
             </form>
         </CheckoutModal>
     );

@@ -7,6 +7,10 @@ import classes from './MealItem.module.css'
 const MealItem = (props) => {
     const cartCtx = useContext(CartContext);
 
+    /**
+     * It takes an amount as an argument and then calls the addItem function from the cart context with an
+     * object containing the id, name, amount, img, and price of the product.
+     */
     const addToCartHandler = amount => {
         cartCtx.addItem({
             id: props.id,

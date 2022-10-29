@@ -31,6 +31,8 @@ const Reservation = (props) => {
     const seatsRef = useRef()
     const requestsRef = useRef()
 
+    /* Destructuring the object returned by the custom hook `useInput` and assigning the values to the
+    variables `nameIsValid`, `nameHasError`, `nameChangeHandler`, and `nameBlurHandler`. */
     const {
         isValid: nameIsValid,
         hasError: nameHasError,
@@ -67,6 +69,8 @@ const Reservation = (props) => {
 
         const url = 'https://react-http-403d2-default-rtdb.firebaseio.com/reservations.json'
 
+        /* Sending a POST request to the url specified in the `url` variable. The data being sent is
+        the data in the object. */
         await axios.post(url, {
             name: nameRef.current.value,
             email: emailRef.current.value,
@@ -75,13 +79,21 @@ const Reservation = (props) => {
             time: timeRef.current.value,
             seats: seatsRef.current.value,
             requests: requestsRef.current.value,
-        }).then((res) => {
-            setReservationSubmitted(true)
-            setTimeout(() => {
-                setReservationSubmitted(false)
-                props.onClose()
-            }, 1200);
         })
+            /* This is a callback function that is executed after the POST request is sent. The
+            `setReservationSubmitted` function is called to set the `reservationSubmitted` state to
+            `true`. This is to display the `ReservationModal` component with the `<p
+            className={classes.deployed}>Reservation successfully submitted</p>` element. The
+            `setTimeout` function is called to set the `reservationSubmitted` state to `false` after
+            1.2 seconds. This is to close the `ReservationModal` component. The `props.onClose`
+            function is called to close the `ReservationModal` component. */
+            .then((res) => {
+                setReservationSubmitted(true)
+                setTimeout(() => {
+                    setReservationSubmitted(false)
+                    props.onClose()
+                }, 1200);
+            })
 
         // await fetch('https://react-http-403d2-default-rtdb.firebaseio.com/reservations.json', {
         //     method: 'POST',

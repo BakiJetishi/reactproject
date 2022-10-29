@@ -15,18 +15,31 @@ const Slider = () => {
     let slideInterval;
     let intervalTime = 5000;
 
+    /**
+     * If the current slide is the last slide, then set the current slide to the first slide, otherwise set
+     * the current slide to the next slide
+     */
     const nextSlide = () => {
         setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
     };
 
+    /**
+     * If the current slide is the first slide, then set the current slide to the last slide, otherwise set
+     * the current slide to the previous slide.
+     */
     const prevSlide = () => {
         setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
     };
 
+    /**
+     * The auto() function sets the slideInterval variable to the setInterval() function, which calls the
+     * nextSlide() function every intervalTime milliseconds.
+     */
     function auto() {
         slideInterval = setInterval(nextSlide, intervalTime);
     }
 
+    /* A React hook that is called after every render. It is used to perform side effects. */
     useEffect(() => {
         if (autoScroll) {
             auto();
@@ -36,6 +49,9 @@ const Slider = () => {
 
     const cartCtx = useContext(CartContext);
 
+    /**
+     * When the user clicks the add to cart button, add the current slide's data to the cart.
+     */
     const addToCartHandler = amount => {
         cartCtx.addItem({
             id: sliderData[currentSlide].id,

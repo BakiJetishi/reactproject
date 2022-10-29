@@ -10,6 +10,7 @@ const Meals = () => {
     const [category, setCategory] = useState('All')
     const categories = ['All', 'Burgers', 'Pizza', 'Chicken', 'Drinks', 'Desserts', 'Fish', 'Fruits']
 
+    /* Fetching data from the firebase database. */
     useEffect(() => {
         const fetchMeals = async () => {
             const response = await fetch('https://react-http-403d2-default-rtdb.firebaseio.com/meals.json');
@@ -22,6 +23,7 @@ const Meals = () => {
 
             const loadedMeals = [];
 
+            /* Looping through the responseData and pushing the data into the loadedMeals array. */
             for (const key in responseData) {
                 loadedMeals.push({
                     id: key,
@@ -41,6 +43,7 @@ const Meals = () => {
         });
     }, []);
 
+    /* Return if there is an error in the fetching of data from the database. */
     if (httpError) {
         return (
             <section className={classes['meals-error']}>
@@ -52,13 +55,19 @@ const Meals = () => {
         setCategory(props)
     }
 
+    /* Filtering the meals array and returning a new array with the items that have the same type as
+    the category. */
     let filteredMeals = meals.filter(item => item.type === category)
 
+
+    /* Checking if the category is equal to 'All' and if it is, it is setting the filteredMeals array to
+    the meals array. */
     if (category === 'All') {
         filteredMeals = meals.map(item => item)
-
     }
 
+    /* Mapping through the filteredMeals array and returning a MealItem component for each item in the
+    array. */
     let mealsList = filteredMeals.map((meal) => (
         <MealItem
             key={meal.id}
@@ -70,6 +79,8 @@ const Meals = () => {
         />
     ));
 
+    /* Checking if the mealsList array is empty and if it is, it is setting the mealsList variable to a
+    paragraph tag with the text 'No Food Items Available'. */
     if (mealsList.length === 0) {
         mealsList = <p>No Food Items Available</p>
     }

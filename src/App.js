@@ -13,6 +13,7 @@ import AuthContext from './store/auth-context';
 
 import './App.css';
 
+/* Lazy loading the components. */
 const Products = lazy(() => import('./pages/Products'))
 const Profile = lazy(() => import('./pages/Profile'))
 const AllNews = lazy(() => import('./components/Layout/news/AllNews'))
@@ -30,6 +31,9 @@ function App() {
 
   const authCtx = useContext(AuthContext);
 
+  /**
+   * If the current theme is light, set the theme to dark. Otherwise, set the theme to light
+   */
   const toggleTheme = () => {
     setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
   }
